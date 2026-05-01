@@ -1,8 +1,6 @@
 services:
   postgresql:
     image: postgres:${POSTGRESQL_VERSION}
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: temporal
       POSTGRES_USER: temporal
@@ -19,8 +17,6 @@ services:
 
   elasticsearch:
     image: elasticsearch:${ELASTICSEARCH_VERSION}
-    ports:
-      - "9200:9200"
     environment:
       - cluster.routing.allocation.disk.threshold_enabled=true
       - cluster.routing.allocation.disk.watermark.low=512mb
@@ -83,8 +79,6 @@ services:
       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
     networks:
       - temporal-network-lychen
-    ports:
-      - '7233:7233'
     volumes:
       - ./dynamicconfig:/etc/temporal/config/dynamicconfig
     healthcheck:
@@ -120,8 +114,6 @@ services:
     image: temporalio/ui:${TEMPORAL_UI_VERSION}
     networks:
       - temporal-network-lychen
-    ports:
-      - 8080:8080
 
 networks:
   temporal-network-lychen:
