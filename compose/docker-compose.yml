@@ -82,7 +82,7 @@ services:
     volumes:
       - ./dynamicconfig:/etc/temporal/config/dynamicconfig
     ports:
-      - "7233:${TEMPORAL_EXTERNAL_PORT}"
+      - "${TEMPORAL_EXTERNAL_PORT}:7233"
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "7233"]
       interval: 5s
