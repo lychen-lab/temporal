@@ -81,6 +81,8 @@ services:
       - temporal-network-lychen
     volumes:
       - ./dynamicconfig:/etc/temporal/config/dynamicconfig
+    ports:
+      - "7233:${TEMPORAL_EXTERNAL_PORT}"
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "7233"]
       interval: 5s
